@@ -5,7 +5,9 @@ const App = () => {
   const {hello} = UseGlobalContext();
   return (
     <div>
-      <h1>{hello} World</h1>
+        <h1 className="text-3xl font-bold underline ">
+      Hello world!
+    </h1>
     </div>
   )
 }
