@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { dummyCourses } from './assets/assets';
 
 const AppContext = React.createContext();
 
@@ -8,8 +9,17 @@ export const AppProvider = ({children}) => {
 
   const [allCouserses, setAllCourses] = useState([]);
 
+  const fetchAllCourses = async () => {
+    setAllCourses(dummyCourses);
+  }
+
+  useEffect(()=>{
+    fetchAllCourses();
+  },[]);
+
   return <AppContext.Provider value={{
-    currency
+    currency,
+    allCouserses
     }}>
     {children}
   </AppContext.Provider>

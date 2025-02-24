@@ -9,7 +9,7 @@ const CourseCart = ({course}) => {
       <img src={course.courseThumbnail} alt="" />
       <div>
         <h3>{course.courseTitle}</h3>
-        <p>{course.education.name}</p>
+        <p>{course.educator.name}</p>
         <div>
           <p>4.5</p>
           <div>
