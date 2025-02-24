@@ -1,9 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 const AppContext = React.createContext();
 
 export const AppProvider = ({children}) => {
-  return <AppContext.Provider value={{hello:"Wuxup"}}>
+
+  const currency = import.meta.env.VITE_CURRENCY;
+
+  const [allCouserses, setAllCourses] = useState([]);
+
+  return <AppContext.Provider value={{
+    currency
+    }}>
     {children}
   </AppContext.Provider>
 }
