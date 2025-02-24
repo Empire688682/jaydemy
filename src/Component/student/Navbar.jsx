@@ -26,7 +26,10 @@ const Navbar = () => {
         <div className='md:hidden flex items-center gap-2 sm:gap-5 text-gray-500'>
         <button>Become Educator</button>
         |<Link to="/my-enrollment">My Enrollment</Link>
-        <button onClick={()=>openSignIn()}><img src={assets.user_icon} alt="img" /></button>
+        {
+          user ? <UserButton/> :
+          <button onClick={()=>openSignIn()}><img src={assets.user_icon} alt="img" /></button>
+        }
         </div>
     </div>
   )
