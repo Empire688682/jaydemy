@@ -1,10 +1,9 @@
 import React from 'react'
 import Hero from '../../Component/student/hero'
 import TrustedCompany from '../../Component/student/TrustedCompany'
-import CoursesList from './CoursesList'
-import CourseDetails from './CourseDetails'
 import CoursesSection from '../../Component/student/CoursesSection'
 import TestimoniaSection from '../../Component/student/TestimoniaSection'
+import CallToAction from '../../Component/student/CallToAction'
 
 const Home = () => {
   return (
@@ -13,6 +12,7 @@ const Home = () => {
       <TrustedCompany/>
       <CoursesSection/>
       <TestimoniaSection/>
+      <CallToAction/>
     </div>
   )
 }
