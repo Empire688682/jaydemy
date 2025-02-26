@@ -1,9 +1,13 @@
 import React from 'react'
-import { assets } from '../../assets/assets'
+import { assets } from '../../assets/assets';
+import { FaLocationArrow } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className='bg-gray-900 md:px-36 text-left w-full mt-10'>
+    <footer className='bg-gray-900 relative  md:px-36 text-left w-full mt-10'>
+      <div onClick={()=>scrollTo(0,0)} className='absolute right-10 top-10 bg-white p-2 cursor-pointer rounded-full'>
+        <FaLocationArrow className='text-2xl'/>
+      </div>
       <div className='flex flex-col gap-10 justify-center items-start md:gap-32 py-10 border-b border-white/30 px-8 md:px-0 md:flex-row'>
         <div className='flex flex-col items-center w-full md:items-start'>
           <img src={assets.logo_dark} alt="logo" />
