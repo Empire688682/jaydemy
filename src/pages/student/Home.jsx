@@ -4,6 +4,7 @@ import TrustedCompany from '../../Component/student/TrustedCompany'
 import CoursesList from './CoursesList'
 import CourseDetails from './CourseDetails'
 import CoursesSection from '../../Component/student/CoursesSection'
+import TestimoniaSection from '../../Component/student/TestimoniaSection'
 
 const Home = () => {
   return (
@@ -11,7 +12,7 @@ const Home = () => {
       <Hero/>
       <TrustedCompany/>
       <CoursesSection/>
-      <CoursesList/>
+      <TestimoniaSection/>
     </div>
   )
 }

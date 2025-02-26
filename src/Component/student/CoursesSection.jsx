@@ -14,7 +14,9 @@ const CoursesSection = () => {
         allCouserses.slice(0,4).map((course, i)=> <CourseCart key={i} course={course}/>)
       }
       </div>
+      <div className='m-10'>
       <Link to="/course-list" onClick={()=> scrollTo(0,0)} className='text-gray-500 border m-y-10 border-gray-500/30 px-10 py-3 rounded '>See all courses</Link>
+      </div>
     </div>
   )
 }
