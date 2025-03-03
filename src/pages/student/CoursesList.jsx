@@ -3,6 +3,8 @@ import { UseGlobalContext } from '../../Context';
 import SearchBar from '../../Component/student/SearchBar'
 import CourseCart from '../../Component/student/CourseCart'
 import { useParams } from 'react-router-dom';
+import { assets } from '../../assets/assets';
+import Footer from '../../Component/student/Footer';
 
 const CoursesList = () => {
   const { navigate, allCourses } = UseGlobalContext();
@@ -35,6 +37,14 @@ const CoursesList = () => {
             <SearchBar data={input} />
           </div>
         </div>
+        {
+          input && (
+            <div className='inline-flex justify-between items-center mt-4 gap-4 px-4 py-2 border mt-8 border-gray-200 rounded text-gray-600'>
+              <p>{filteredCourse && filteredCourse.length} results found</p>
+              <img src={assets.cross_icon} alt="Cross_Icon" onClick={()=>navigate("/course-list")} />
+            </div>
+          )
+        }
         <div className='grid grid-cols-1 sm:grid-cols-2 mid:grid-cols-3 lg:grid-cols-4 my-16 gap-3 px-2 md:p-0'>
           {
             filteredCourse && filteredCourse.length > 0 ? filteredCourse.map((course, i) => < CourseCart course={course} key={i} />)
@@ -43,6 +53,7 @@ const CoursesList = () => {
           }
         </div>
       </div>
+    <Footer/>
     </>
   )
 }
