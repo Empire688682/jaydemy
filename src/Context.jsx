@@ -33,13 +33,30 @@ export const AppProvider = ({children}) => {
     return totalRating / course.courseRatings.length
   };
 
+  //Function to calculate Course Chapter Timeconst calculateCourseChapterTime = (chapter) => {
+    const calculateCourseChapterTime = (course) => {
+      if (!course || !Array.isArray(course.courseContent)) {
+        console.error("Invalid course data:", course);
+        return 0;
+      }
+    
+      return course.courseContent.reduce((total, chapter) => {
+        return total + (Array.isArray(chapter.chapterContent)
+          ? chapter.chapterContent.reduce((chapterTotal, lecture) => chapterTotal + (lecture.lectureDuration || 0), 0)
+          : 0);
+      }, 0);
+    };
+    
+
+
   return <AppContext.Provider value={{
     currency,
     allCourses,
     navigate,
     calculateTating,
     isEducator,
-    setIsEducator
+    setIsEducator,
+    calculateCourseChapterTime
     }}>
     {children}
   </AppContext.Provider>
