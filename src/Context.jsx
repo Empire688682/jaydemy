@@ -33,7 +33,7 @@ export const AppProvider = ({children}) => {
     return totalRating / course.courseRatings.length
   };
 
-  //Function to calculate Course Chapter Timeconst calculateCourseChapterTime = (chapter) => {
+  //Function to calculate Course Chapter Time
     const calculateCourseChapterTime = (course) => {
       if (!course || !Array.isArray(course.courseContent)) {
         console.error("Invalid course data:", course);
