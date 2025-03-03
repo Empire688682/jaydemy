@@ -6,7 +6,7 @@ import { assets } from '../../assets/assets';
 import humanizerDuration from 'humanize-duration';
 
 const CourseDetails = () => {
-  const { allCourses, calculateTating, calculateCourseChapterTime } = UseGlobalContext();
+  const { allCourses, calculateTating, calculateCourseChapterTime, currency } = UseGlobalContext();
   const { courseId } = useParams();
   const [courseData, setCourseData] = useState(null);
   const [openSection, setOpenSection] = useState({});
@@ -88,8 +88,19 @@ const CourseDetails = () => {
         </div>
       </div>
       {/*Rigth colum*/}
-      <div>
-        B
+      <div className='max-w-course-card z-10 shadow-custom-card rounded-t md:rounded-none overflow-hidden bg-white min-w-[300px] sm:min-w-[400px]'>
+        <img src={courseData.courseThumbnail} alt="courseThumbnail" />
+        <div className='p-5'>
+          <div className='flex items-center gap-2'>
+            <img src={assets.time_clock_icon} alt="time_clock_icon" className='w-3.5' />
+            <p className='text-red-500'><span className='font-medium'>5 days</span> left at this price</p>
+          </div>
+          <div className='flex items-center gap-2 pt-5'>
+            <p>{currency}{(courseData.coursePrice - courseData.discount * courseData.coursePrice / 100 ).toFixed(2)}</p>
+            <p>{currency}{courseData.coursePrice}</p>
+            <p>{courseData.discount}% off</p>
+          </div>
+        </div>
       </div>
     </div>
   )
