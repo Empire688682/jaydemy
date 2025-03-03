@@ -329,7 +329,7 @@ export const dummyCourses = [
                     {
                         "lectureId": "lecture3",
                         "lectureTitle": "Classes and Objects",
-                        "lectureDuration": 900,
+                        "lectureDuration": 9371,
                         "lectureUrl": "https://youtu.be/HdLIMoQkXFA",
                         "isPreviewFree": true,
                         "lectureOrder": 1

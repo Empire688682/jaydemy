@@ -34,20 +34,17 @@ export const AppProvider = ({children}) => {
   };
 
   //Function to calculate Course Chapter Time
-  const calculateCourseChapterTime = (course) => {
-    if(!course || !Array.isArray(course.courseContent)){
-      console.log("Invalid data:", course);
+  const calculateCourseChapterTime = (chapter) => {
+    if(!chapter || !Array.isArray(chapter.chapterContent)){
+      console.log("Invalid data:", chapter);
     }
-    const allTimeInSec = course.courseContent.reduce((total, chapter)=>{
-      return total + (Array.isArray(chapter.chapterContent)? chapter.chapterContent.reduce((chapterTotal, duration) => chapterTotal + (duration.lectureDuration || 0), 0) : 0)
-    }, 0);
+    let time = 0;
 
-    return humanizeDuration(allTimeInSec * 1000, {units:["h", "m", "s"]});
-  };
+    chapter.chapterContent.map((duration)=> time += duration.lectureDuration);
 
-  
+    return humanizeDuration(time * 60 * 1000, {units:["h", "m", "s" ]});
     
-
+  };   
 
   return <AppContext.Provider value={{
     currency,
