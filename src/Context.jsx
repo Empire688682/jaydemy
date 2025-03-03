@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { dummyCourses } from './assets/assets';
 import { useNavigate } from 'react-router-dom';
-
+import humanizeDuration from "humanize-duration"
 const AppContext = React.createContext();
 
 export const AppProvider = ({children}) => {
@@ -34,18 +34,11 @@ export const AppProvider = ({children}) => {
   };
 
   //Function to calculate Course Chapter Time
-    const calculateCourseChapterTime = (course) => {
-      if (!course || !Array.isArray(course.courseContent)) {
-        console.error("Invalid course data:", course);
-        return 0;
-      }
+  const calculateCourseChapterTime = (course) => {
     
-      return course.courseContent.reduce((total, chapter) => {
-        return total + (Array.isArray(chapter.chapterContent)
-          ? chapter.chapterContent.reduce((chapterTotal, lecture) => chapterTotal + (lecture.lectureDuration || 0), 0)
-          : 0);
-      }, 0);
-    };
+  };
+
+  
     
 
 
