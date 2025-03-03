@@ -35,7 +35,14 @@ export const AppProvider = ({children}) => {
 
   //Function to calculate Course Chapter Time
   const calculateCourseChapterTime = (course) => {
-    
+    if(!course || !Array.isArray(course.courseContent)){
+      console.log("Invalid data:", course);
+    }
+    const allTimeInSec = course.courseContent.reduce((total, chapter)=>{
+      return total + (Array.isArray(chapter.chapterContent)? chapter.chapterContent.reduce((chapterTotal, duration) => chapterTotal + (duration.lectureDuration || 0), 0) : 0)
+    }, 0);
+
+    return humanizeDuration(allTimeInSec * 1000, {units:["h", "m", "s"]});
   };
 
   

@@ -40,7 +40,7 @@ const CourseDetails = () => {
                 <p className='text-sm'>Course by <span className='cursor-pointer text-blue-600 underline'>JayEmpire</span></p>
 
                 <div>
-                <p>{calculateCourseChapterTime(courseData)} minutes</p>
+                <p>{calculateCourseChapterTime(courseData)}</p>
                 </div>
       </div>
       {/*Rigth colum*/}
