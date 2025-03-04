@@ -50,7 +50,7 @@ export const AppProvider = ({ children }) => {
 
     course.courseContent.map((chapter) => chapter.chapterContent.map((lecture) => time += lecture.lectureDuration));
 
-    return humanizeDuration(time * 60 * 10000, { units: ["h", "m", "s"] });
+    return humanizeDuration(time * 60 * 1000, { units: ["h", "m", "s"] });
   };
 
   //Function to calculate Course Time

@@ -104,18 +104,20 @@ const CourseDetails = () => {
               <p className='md:text-lg text-gray-500'>{courseData.discount}% off</p>
             </div>
 
-            <div className='flex items-center text-sm md:text-defaut gap-4 pt-2 md:pt-4 text-gray-500'>
+            <div className='flex items-center text-sm md:text-defaut gap-4 pt-2 md:pt-4 text-gray-500 mb-3'>
               <div className='flex items-center gap-1'>
                 <img src={assets.star} alt="atar-icon" />
                 <p className='flex w-full'>{calculateTating(courseData)}</p>
               </div>
-              <div className='h-4 w-px bg-gray-500/40'>
-                <img src={assets.time_clock_icon} alt="clock_icon" />
-                <p className='flex'>{calculateCourseDuration(courseData)}</p>
+              <div className='flex h-4 w-px bg-gray-500/40 gap-1 '></div>
+              <div className='flex items-center gap-1'>
+              <img src={assets.time_clock_icon} alt="clock_icon" />
+              <p>{calculateCourseDuration(courseData)}</p>
               </div>
-              <div className='h-4 w-px bg-gray-500/40 mx-10'>
-                <img src={assets.time_clock_icon} alt="clock_icon" />
-                <p className='flex'>{calculateCourseLecture(courseData)} Lessions</p>
+              <div className=' flex h-4 w-px bg-gray-500/40 mx-10'></div>
+              <div className='flex items-center gap-1'>
+              <img src={assets.time_clock_icon} alt="clock_icon" />
+              <p>{calculateCourseLecture(courseData)} Lessions</p>
               </div>
             </div>
             <button className='md:mt-6 mt-4 w-full py-3 rounded bg-blue-600 text-white font-medium'>{isAlreadyEnrolled ? 'Already Enrolled' : 'Enrolled Now'}</button>
