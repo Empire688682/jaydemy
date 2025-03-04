@@ -45,6 +45,19 @@ export const AppProvider = ({children}) => {
     return humanizeDuration(time * 60 * 1000, {units:["h", "m", "s" ]});
     
   };   
+  
+  //Function to calculate Course Chapter Time
+  const calculateCourseDuration = (chapter) => {
+    if(!chapter || !Array.isArray(chapter.chapterContent)){
+      console.log("Invalid data:", chapter);
+    }
+    let time = 0;
+
+    chapter.chapterContent.map((duration)=> time += duration.lectureDuration);
+
+    return humanizeDuration(time * 60 * 1000, {units:["h", "m", "s" ]});
+    
+  };  
 
   return <AppContext.Provider value={{
     currency,
@@ -53,7 +66,8 @@ export const AppProvider = ({children}) => {
     calculateTating,
     isEducator,
     setIsEducator,
-    calculateCourseChapterTime
+    calculateCourseChapterTime,
+    calculateCourseDuration
     }}>
     {children}
   </AppContext.Provider>
