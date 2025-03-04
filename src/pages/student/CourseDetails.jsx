@@ -6,7 +6,7 @@ import { assets } from '../../assets/assets';
 import humanizerDuration from 'humanize-duration';
 
 const CourseDetails = () => {
-  const { allCourses, calculateTating, calculateCourseChapterTime, currency, calculateCourseDuration } = UseGlobalContext();
+  const { allCourses, calculateTating, calculateCourseChapterTime, currency, calculateCourseDuration,calculateCourseLecture } = UseGlobalContext();
   const { courseId } = useParams();
   const [courseData, setCourseData] = useState(null);
   const [openSection, setOpenSection] = useState({});
@@ -108,7 +108,11 @@ const CourseDetails = () => {
             </div>
             <div className='h-4 w-px bg-gray-500/40'>
               <img src={assets.time_clock_icon} alt="clock_icon" />
-              <p>{calculateCourseDuration()}</p>
+             <p>{calculateCourseDuration(courseData)}</p>
+            </div>
+            <div className='h-4 w-px bg-gray-500/40 mx-10'>
+              <img src={assets.time_clock_icon} alt="clock_icon" />
+             <p>{calculateCourseLecture(courseData)} Lessions</p>
             </div>
           </div>
         </div>

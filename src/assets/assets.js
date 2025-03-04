@@ -341,6 +341,14 @@ export const dummyCourses = [
                         "lectureUrl": "https://youtu.be/HdLIMoQkXFA",
                         "isPreviewFree": false,
                         "lectureOrder": 2
+                    },
+                    {
+                        "lectureId": "lecture5",
+                        "lectureTitle": "Inheritance and Polymorphism",
+                        "lectureDuration": 10,
+                        "lectureUrl": "https://youtu.be/HdLIMoQkXFA",
+                        "isPreviewFree": false,
+                        "lectureOrder": 2
                     }
                 ]
             }

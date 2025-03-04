@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import humanizeDuration from "humanize-duration"
 const AppContext = React.createContext();
 
-export const AppProvider = ({children}) => {
+export const AppProvider = ({ children }) => {
 
   const currency = import.meta.env.VITE_CURRENCY;
   const navigate = useNavigate()
@@ -17,17 +17,17 @@ export const AppProvider = ({children}) => {
   }
 
   //Fetch all courses
-  useEffect(()=>{
+  useEffect(() => {
     fetchAllCourses();
-  },[]);
+  }, []);
 
   //Function to calculate average rating of course
-  const calculateTating = (course) =>{
-    if(course.courseRatings.length === 0){
+  const calculateTating = (course) => {
+    if (course.courseRatings.length === 0) {
       return 0;
     }
-    let totalRating =  0;
-    course.courseRatings.forEach(rating=>{
+    let totalRating = 0;
+    course.courseRatings.forEach(rating => {
       totalRating += rating.rating;
     });
     return totalRating / course.courseRatings.length
@@ -35,29 +35,29 @@ export const AppProvider = ({children}) => {
 
   //Function to calculate Course Chapter Time
   const calculateCourseChapterTime = (chapter) => {
-    if(!chapter || !Array.isArray(chapter.chapterContent)){
-      console.log("Invalid data:", chapter);
-    }
     let time = 0;
 
-    chapter.chapterContent.map((duration)=> time += duration.lectureDuration);
+    chapter.chapterContent.map((duration) => time += duration.lectureDuration);
 
-    return humanizeDuration(time * 60 * 1000, {units:["h", "m", "s" ]});
-    
-  };   
-  
-  //Function to calculate Course Chapter Time
-  const calculateCourseDuration = (chapter) => {
-    if(!chapter || !Array.isArray(chapter.chapterContent)){
-      console.log("Invalid data:", chapter);
-    }
-    let time = 0;
+    return humanizeDuration(time * 60 * 1000, { units: ["h", "m", "s"] });
 
-    chapter.chapterContent.map((duration)=> time += duration.lectureDuration);
+  };
 
-    return humanizeDuration(time * 60 * 1000, {units:["h", "m", "s" ]});
-    
-  };  
+  //Function to calculate Course Time
+  const calculateCourseDuration = (course) => {
+
+    let time = 0
+
+    course.courseContent.map((chapter) => chapter.chapterContent.map((lecture) => time += lecture.lectureDuration));
+
+    return humanizeDuration(time * 60 * 10000, { units: ["h", "m", "s"] });
+  };
+
+  //Function to calculate Course Time
+  const calculateCourseLecture = (course) => {
+
+    return course.courseContent.reduce((total, chapter) => total + (chapter.chapterContent.length || 0), 0);
+  }
 
   return <AppContext.Provider value={{
     currency,
@@ -67,15 +67,16 @@ export const AppProvider = ({children}) => {
     isEducator,
     setIsEducator,
     calculateCourseChapterTime,
-    calculateCourseDuration
-    }}>
+    calculateCourseDuration,
+    calculateCourseLecture
+  }}>
     {children}
   </AppContext.Provider>
 }
 
- const UseGlobalContext = () =>{
-    return useContext(AppContext);
- }
+const UseGlobalContext = () => {
+  return useContext(AppContext);
+}
 
- export {UseGlobalContext}
+export { UseGlobalContext }
 
