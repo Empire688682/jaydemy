@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { dummyCourses } from './assets/assets';
 import { useNavigate } from 'react-router-dom';
 import humanizeDuration from "humanize-duration"
+import { dummyStudentEnrolled } from './assets/assets';
+
 const AppContext = React.createContext();
 
 export const AppProvider = ({ children }) => {
@@ -11,14 +13,25 @@ export const AppProvider = ({ children }) => {
 
   const [allCourses, setAllCourses] = useState([]);
   const [isEducator, setIsEducator] = useState(true);
+  const [enrolledCourse, setEnrolledCourse] = useState([]);
 
   const fetchAllCourses = async () => {
     setAllCourses(dummyCourses);
+  }
+  
+  //Fetch user Enrolled Courese
+  const fetchUserEnrolledCourses = async () => {
+    setEnrolledCourse(dummyStudentEnrolled);
   }
 
   //Fetch all courses
   useEffect(() => {
     fetchAllCourses();
+  }, []);
+
+ //Fetch user Enrolled Courese
+  useEffect(() => {
+    fetchUserEnrolledCourses();
   }, []);
 
   //Function to calculate average rating of course
@@ -68,7 +81,9 @@ export const AppProvider = ({ children }) => {
     setIsEducator,
     calculateCourseChapterTime,
     calculateCourseDuration,
-    calculateCourseLecture
+    calculateCourseLecture,
+    enrolledCourse,
+    fetchUserEnrolledCourses
   }}>
     {children}
   </AppContext.Provider>

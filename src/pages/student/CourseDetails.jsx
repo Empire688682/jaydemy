@@ -5,6 +5,7 @@ import Loading from '../../Component/student/Loading';
 import { assets } from '../../assets/assets';
 import humanizerDuration from 'humanize-duration';
 import Footer from "../../Component/student/Footer"
+import YouTube from "react-youtube"
 
 const CourseDetails = () => {
   const { allCourses, calculateTating, calculateCourseChapterTime, currency, calculateCourseDuration, calculateCourseLecture } = UseGlobalContext();
@@ -12,6 +13,7 @@ const CourseDetails = () => {
   const [courseData, setCourseData] = useState(null);
   const [openSection, setOpenSection] = useState({});
   const [isAlreadyEnrolled, setIsAlreadyEnrolled] = useState(false);
+  const [playData, setPlayData] = useState(null);
 
   const fetchCourseData = async () => {
     const findCourse = allCourses.find(course => course._id === courseId);
@@ -24,7 +26,7 @@ const CourseDetails = () => {
 
   useEffect(() => {
     fetchCourseData()
-  }, []);
+  }, [allCourses]);
 
 
   return courseData ? (
@@ -70,7 +72,9 @@ const CourseDetails = () => {
                                 <p>{lecture.lectureTitle}</p>
                                 <div className='flex gap-2'>
                                   {
-                                    lecture && <p className='text-blue-500 cursor-pointer'>Preview</p>
+                                    lecture && <p className='text-blue-500 cursor-pointer' onClick={() => setPlayData({
+                                      videoId: lecture.lectureUrl.split("/").pop(),
+                                    })}>Preview</p>
                                   }
                                   <p>{humanizerDuration(lecture.lectureDuration * 60 * 1000, { units: ['h', 'm'] })}</p>
                                 </div>
@@ -92,7 +96,12 @@ const CourseDetails = () => {
         </div>
         {/*Rigth colum*/}
         <div className='max-w-course-card z-10 shadow-custom-card rounded-t md:rounded-none overflow-hidden bg-white min-w-[300px] sm:min-w-[400px]'>
-          <img src={courseData.courseThumbnail} alt="courseThumbnail" />
+          {
+            playData ? 
+            <YouTube videoId={playData.videoId} opts={{playerVars:{autoplay:1}}} iframeClassName='w-full aspect-video '/>
+            :
+            <img src={courseData.courseThumbnail} alt="courseThumbnail" />
+          }
           <div className='p-5'>
             <div className='flex items-center gap-2'>
               <img src={assets.time_clock_icon} alt="time_clock_icon" className='w-3.5' />
@@ -116,7 +125,7 @@ const CourseDetails = () => {
               </div>
               <div className=' flex h-4 w-px bg-gray-500/40 mx-10'></div>
               <div className='flex items-center gap-1'>
-              <img src={assets.time_clock_icon} alt="clock_icon" />
+              <img src={assets.lesson_icon} alt="clock_icon" />
               <p>{calculateCourseLecture(courseData)} Lessions</p>
               </div>
             </div>
