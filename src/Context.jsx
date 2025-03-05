@@ -21,7 +21,7 @@ export const AppProvider = ({ children }) => {
   
   //Fetch user Enrolled Courese
   const fetchUserEnrolledCourses = async () => {
-    setEnrolledCourse(dummyStudentEnrolled);
+    setEnrolledCourse(dummyCourses);
   }
 
   //Fetch all courses
